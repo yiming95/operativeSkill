@@ -1,0 +1,21 @@
+name: operativeSkill
+channels:
+- defaults
+dependencies:
+- python=3.7.*
+- bz2file
+- imageio
+- cython
+- numpy
+- h5py
+- jupyter
+- matplotlib
+- pandas
+- pillow
+- pip
+- scikit-learn
+- scipy
+- seaborn
+- pip:
+  - tensorflow
+  - keras
