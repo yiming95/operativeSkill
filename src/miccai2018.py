@@ -32,8 +32,7 @@ import re
 import math
 import matplotlib
 
-import tensorflow.compat.v1 as tf
-tf.disable_v2_behavior()
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 matplotlib.use('pdf')
 import matplotlib.pyplot as plt
@@ -50,6 +49,7 @@ def getExpertiseLevelOfSurgery(surgery_name):
 def getMetaDataForSurgeries(surgery_type):
     surgeries_metadata = {}
     file = open(root_dir + surgery_type  + '/meta_file_' + surgery_type + '.txt', 'r')
+
     for line in file:
         line = line.strip()  ## remove spaces
 
@@ -95,7 +95,7 @@ def readFile(file_name, dtype, columns_to_use=None):
 def generateMaps(surgery_type):
     listOfSurgeries = []
     y = []
-    path = root_dir + surgery_type + '_kinematic' + '/kinematics/AllGestures/'
+    path = root_dir + surgery_type + '/kinematics/AllGestures/'
     for subdir, dirs, files in os.walk(path):
         for file_name in files:
             surgery = readFile(path + file_name, float, columns_to_use=dimensions_to_use)
@@ -499,9 +499,15 @@ def each_dim_build_model(input_shapes, summary=False, reg=0.00001):
 start_time = time.time()
 
 # Global parameters 
-root_dir = os.getcwd() + '/../' + '/JIGSAWS/'
-path_to_configurations = os.getcwd() + '/../' + '/JIGSAWS/Experimental_setup/'
-path_to_results = os.getcwd() + '/../' + '/temp/'
+root_dir = os.getcwd() + '/JIGSAWS/'
+# print(root_dir)
+
+path_to_configurations = os.getcwd() + '/JIGSAWS/Experimental_setup/'
+# print(path_to_configurations)
+
+path_to_results = os.getcwd() + '/temp/'
+print(path_to_results)
+
 nb_epochs = 1000
 surgery_type = 'Suturing'
 dimensions_to_use = range(0, 76)
