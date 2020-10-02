@@ -146,6 +146,8 @@ def validation(surgery_type='Suturing', summary=False, reg=0.01, max_itr=20):
             min_length_test = np.iinfo(np.int32).max  # this is the minimum length of a test instance
             min_length_val = np.iinfo(np.int32).max  # this is the minimum length of a val instance
             for file_name in files:
+
+                print(str(file_name))
                 data = readFile(subdir + '/' + file_name, str)
                 surgeries_set = set()
                 for gesture in data:
@@ -188,12 +190,17 @@ def validation(surgery_type='Suturing', summary=False, reg=0.01, max_itr=20):
 
                 fold = find_pattern(subdir, 'SuperTrialOut' + '/.*_Out').replace('SuperTrialOut' + '/', '').replace(
                     '_Out', '')
+                print(str(fold))
+
                 iteration = find_pattern(subdir, 'itr_.*').replace('itr_', '')
+                print(str(iteration))
+
                 # we train on each training instance
 
                 y_test = fitModel(model, x_train, y_train, x_test, y_test, x_val, y_val)
 
-                model = load_model('model.h5')  # reload the best model saved
+                #### reload model
+                # model = load_model('model.h5')  # reload the best model saved
 
                 # uncomment if you want to visualize the class activiation map as a gif
                 # generate_class_activation_map_for_all_surgeries(model,fold)
@@ -507,7 +514,7 @@ path_to_configurations = os.getcwd() + '/JIGSAWS/Experimental_setup/'
 # print(path_to_configurations)
 
 path_to_results = os.getcwd() + '/temp/'
-print(path_to_results)
+# print(path_to_results)
 
 nb_epochs = 1000
 surgery_type = 'Suturing'
