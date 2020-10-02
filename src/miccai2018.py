@@ -133,7 +133,9 @@ def validation(surgery_type='Suturing', summary=False, reg=0.01, max_itr=20):
     results = "fold,iteration,macro,micro\n"
     for it in range(0, max_itr):
         for subdir, dirs, files in os.walk(path):
-
+            print(str(subdir))
+            print(str(dirs))
+            print(str(files))
             # One configuration with two files Train.txt and Test.txt
             x_train = []
             y_train = []
