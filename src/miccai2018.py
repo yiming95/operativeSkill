@@ -545,12 +545,12 @@ print('Number of different surgeries in total: ' + str(len(mapSurgeryDataBySurge
 
 # comment then uncommment the commented lines if you want to load a pre-trained model 
 
-validation(surgery_type, reg=0.00001, summary=False, max_itr=40)
+# validation(surgery_type, reg=0.00001, summary=False, max_itr=40)
 
-# model = load_model(path_to_results+'feedback/example-figure-in-paper/model.h5')
-# encoder.classes_ = np.load(path_to_results+'feedback/example-figure-in-paper/binary_classes.npy')
+model = load_model(path_to_results+'feedback/example-figure-in-paper/model.h5')
+encoder.classes_ = np.load(path_to_results+'feedback/example-figure-in-paper/binary_classes.npy')
 
-# create_video_feedback(mapSurgeryDataBySurgeryName['Suturing_H004'],convertStringClassesToBinaryClasses(['N'],['N','I','E'],[])[0],model,'Suturing_H004',slave_manipulator='_Left_mod')
+create_video_feedback(mapSurgeryDataBySurgeryName['Suturing_H004'],convertStringClassesToBinaryClasses(['N'],['N','I','E'],[])[0],model,'Suturing_H004',slave_manipulator='_Left_mod')
 
 # uncomment to visualize the trajectory illustrated in the paper
 # class_activation_map(mapSurgeryDataBySurgeryName['Suturing_H004'],convertStringClassesToBinaryClasses(['N'],['N','I','E'],[])[0],model,'Suturing_H004.pdf')
